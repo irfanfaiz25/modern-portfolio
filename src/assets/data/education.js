@@ -2,7 +2,7 @@ export const EducationData = [
   {
     institution: "Tiga Serangkai University Surakarta",
     major: "Bachelor of Informatics",
-    timeSpan: "2021 - Present",
+    timeSpan: "2021 - 2025",
   },
   {
     institution: "Amikom University Yogyakarta",
