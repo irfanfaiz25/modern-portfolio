@@ -75,7 +75,7 @@ const Skills = () => {
           transition={{
             duration: 18,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
         <motion.div
@@ -88,7 +88,7 @@ const Skills = () => {
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
         <motion.div
@@ -100,7 +100,7 @@ const Skills = () => {
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
       </div>
@@ -113,29 +113,26 @@ const Skills = () => {
         >
           {/* Section Header - Creative Layout */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-            <motion.div
-              variants={itemVariants}
-            >
+            <motion.div variants={itemVariants}>
               <div className="space-y-6">
                 <div className="inline-flex items-center space-x-2 glass-effect px-4 py-2 rounded-full text-sm font-medium text-orange-400">
                   <Code size={16} />
                   <span>Expertise</span>
                 </div>
                 <h2 className="text-5xl md:text-6xl font-black leading-tight">
-                  <span className="text-white">Technical</span><br/>
+                  <span className="text-white">Technical</span>
+                  <br />
                   <span className="gradient-text text-glow">Skills</span>
                 </h2>
                 <p className="text-xl text-gray-300 leading-relaxed">
-                  A comprehensive arsenal of cutting-edge technologies and frameworks, 
-                  honed through real-world projects and continuous innovation.
+                  A comprehensive arsenal of cutting-edge technologies and
+                  frameworks, honed through real-world projects and continuous
+                  innovation.
                 </p>
               </div>
             </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              className="hidden lg:block"
-            >
+            <motion.div variants={itemVariants} className="hidden lg:block">
               <div className="relative">
                 <motion.div
                   className="w-64 h-64 mx-auto relative"
@@ -145,7 +142,7 @@ const Skills = () => {
                   transition={{
                     duration: 20,
                     repeat: Infinity,
-                    ease: 'linear',
+                    ease: "linear",
                   }}
                 >
                   <div className="absolute inset-0 rounded-full border-2 border-orange-400/30"></div>
@@ -153,7 +150,7 @@ const Skills = () => {
                   <div className="absolute inset-16 rounded-full bg-gradient-to-br from-orange-500/15 to-red-500/10 flex items-center justify-center">
                     <Code className="text-orange-400 text-glow" size={56} />
                   </div>
-                  
+
                   {/* Floating Tech Icons */}
                   <motion.div
                     className="absolute top-4 right-8 w-8 h-8 bg-gradient-to-br from-orange-500/30 to-red-500/20 rounded-lg flex items-center justify-center"
@@ -164,12 +161,12 @@ const Skills = () => {
                     transition={{
                       duration: 4,
                       repeat: Infinity,
-                      ease: 'easeInOut',
+                      ease: "easeInOut",
                     }}
                   >
                     <Database size={16} className="text-orange-400" />
                   </motion.div>
-                  
+
                   <motion.div
                     className="absolute bottom-8 left-4 w-8 h-8 bg-gradient-to-br from-red-500/30 to-orange-500/20 rounded-lg flex items-center justify-center"
                     animate={{
@@ -179,7 +176,7 @@ const Skills = () => {
                     transition={{
                       duration: 5,
                       repeat: Infinity,
-                      ease: 'easeInOut',
+                      ease: "easeInOut",
                     }}
                   >
                     <Wrench size={16} className="text-red-400" />
@@ -226,11 +223,11 @@ const Skills = () => {
                         <h3 className="text-3xl font-black text-white group-hover:text-orange-400 transition-colors duration-200">
                           {category}
                         </h3>
-                        {data.notes && (
+                        {/* {data.notes && (
                           <span className="text-sm text-orange-400 font-medium">
                             {data.notes}
                           </span>
-                        )}
+                        )} */}
                       </div>
                     </div>
 
@@ -291,7 +288,7 @@ const Skills = () => {
                           />
 
                           {/* Skill Level Indicator */}
-                          <motion.div
+                          {/* <motion.div
                             className="absolute top-2 right-2 opacity-0 group-hover/skill:opacity-100 transition-opacity duration-200"
                             initial={false}
                           >
@@ -308,7 +305,7 @@ const Skills = () => {
                                 />
                               ))}
                             </div>
-                          </motion.div>
+                          </motion.div> */}
                         </motion.div>
                       ))}
                     </div>
