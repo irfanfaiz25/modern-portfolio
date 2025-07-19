@@ -8,6 +8,7 @@ import PostmanLogo from "../svg/postman-logo.svg";
 import MysqlLogo from "../svg/mysql-logo.svg";
 import PostgresLogo from "../svg/postgres-logo.svg";
 import LivewireLogo from "../svg/livewire-logo.svg";
+import GithubActionLogo from "../svg/github-actions-logo.svg";
 
 export const SkillsData = {
   "Backend Development": {
@@ -66,6 +67,14 @@ export const SkillsData = {
       {
         name: "Postman",
         logo: PostmanLogo,
+      },
+    ],
+  },
+  "CI/CD & Deployment": {
+    skills: [
+      {
+        name: "GitHub Actions",
+        logo: GithubActionLogo,
       },
     ],
   },

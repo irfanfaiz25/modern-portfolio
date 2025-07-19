@@ -14,34 +14,22 @@ import ChatBot from "../AI/ChatBot";
 const Home = () => {
   return (
     <div className="min-h-screen bg-dark-900 text-white overflow-x-hidden">
-      {/* Background Elements */}
+      {/* Optimized Background Elements - Reduced complexity */}
       <div className="fixed inset-0 z-0">
+        {/* Single optimized background element */}
         <motion.div
-          className="absolute w-96 h-96 bg-primary-500/10 rounded-full blur-3xl top-20 -left-20"
+          className="absolute w-96 h-96 bg-primary-500/8 rounded-full blur-3xl top-20 -left-20"
           animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.1, 1],
+            scale: [1, 1.05, 1],
           }}
           transition={{
-            duration: 20,
+            duration: 15,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
-        <motion.div
-          className="absolute w-80 h-80 bg-primary-600/5 rounded-full blur-3xl bottom-20 -right-20"
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 40, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        {/* Static gradient overlay for performance */}
+        <div className="absolute w-80 h-80 bg-primary-600/4 rounded-full blur-3xl bottom-20 -right-20" />
       </div>
 
       {/* Main Content */}

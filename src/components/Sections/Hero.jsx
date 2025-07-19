@@ -59,14 +59,6 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, [displayedText, currentRole, isTyping, isDeleting, roles]);
 
-  // Remove this entire useEffect - it's causing the conflict!
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentRole((prev) => (prev + 1) % roles.length);
-  //   }, 3000);
-  //   return () => clearInterval(interval);
-  // }, []);
-
   return (
     <section
       id="hero"
@@ -114,11 +106,11 @@ const Hero = () => {
           }}
         />
 
-        {/* Tech Icons Constellation - Responsive */}
-        {[Code, Database, Server, Globe].map((Icon, index) => (
+        {/* Tech Icons Constellation - Desktop Only */}
+        {[Code, Database].map((Icon, index) => (
           <motion.div
             key={index}
-            className="absolute text-primary-400/20 md:text-primary-400/30"
+            className="absolute hidden md:block text-primary-400/30"
             style={{
               left: `${15 + index * 12}%`,
               top: `${20 + index * 12}%`,
@@ -134,8 +126,7 @@ const Hero = () => {
               ease: "easeInOut",
             }}
           >
-            <Icon size={20 + index * 4} className="md:hidden" />
-            <Icon size={32 + index * 8} className="hidden md:block" />
+            <Icon size={32 + index * 8} />
           </motion.div>
         ))}
       </div>
