@@ -108,15 +108,6 @@ const Highlight = () => {
     <section ref={ref} id="about" className="py-20 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          style={{ y }}
-          className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-accent-500/10 rounded-full blur-xl"
-        />
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, 30]) }}
-          className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-accent-500/8 to-primary-500/8 rounded-full blur-xl"
-        />
-
         {/* Floating Geometric Shapes */}
         <motion.div
           animate={{
@@ -152,34 +143,7 @@ const Highlight = () => {
           viewport={{ once: true, threshold: 0.1 }}
           onViewportEnter={() => setIsVisible(true)}
         >
-          {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <motion.div
-              className="inline-flex items-center space-x-2 glass-effect px-6 py-3 rounded-full text-sm font-medium text-primary-400 mb-6"
-              whileHover={{ scale: 1.05, y: -2 }}
-            >
-              <Award size={16} />
-              <span>Achievements & Goals</span>
-            </motion.div>
-
-            <motion.h2
-              className="text-5xl md:text-6xl font-black leading-tight mb-6"
-              variants={itemVariants}
-            >
-              <span className="text-white">My</span>{" "}
-              <span className="gradient-text text-glow">Journey</span>
-            </motion.h2>
-
-            <motion.p
-              className="text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto"
-              variants={itemVariants}
-            >
-              Tracking progress, celebrating milestones, and setting ambitious
-              goals for the future.
-            </motion.p>
-          </motion.div>
-
-          {/* Impact Highlights - Minimalist Style */}
+          {/* Impact Highlights - Enhanced Title */}
           <motion.div
             variants={itemVariants}
             className="mb-20"
@@ -187,17 +151,19 @@ const Highlight = () => {
           >
             <div className="text-center mb-16">
               <motion.div
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500/10 to-accent-500/10 backdrop-blur-sm border border-primary-500/20 px-4 py-2 rounded-full text-sm font-medium text-primary-400 mb-6"
-                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center space-x-3 bg-gradient-to-r from-primary-500/20 to-accent-500/20 backdrop-blur-sm border border-primary-500/30 px-6 py-3 rounded-full text-sm font-semibold text-primary-300 mb-8"
+                whileHover={{ scale: 1.05, y: -2 }}
               >
-                <TrendingUp size={16} />
+                <TrendingUp size={18} />
                 <span>Impact Metrics</span>
               </motion.div>
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Measurable <span className="gradient-text">Achievements</span>
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-6">
+                Measurable{" "}
+                <span className="gradient-text text-glow">Achievements</span>
               </h3>
-              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Key milestones from my development journey
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
+                Key milestones and quantifiable results from my development
+                journey
               </p>
             </div>
 
@@ -264,7 +230,7 @@ const Highlight = () => {
                           </div>
                         ) : (
                           <motion.div
-                            className="text-2xl md:text-3xl font-bold gradient-text"
+                            className="text-2xl md:text-3xl font-bold gradient-text capitalize"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.2 + 0.3 }}
@@ -329,15 +295,21 @@ const Highlight = () => {
           </motion.div>
         </motion.div>
 
-        {/* Future Goals - Timeline Style */}
+        {/* Future Goals - Distinguished Style */}
         <motion.div variants={itemVariants}>
           <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold text-white mb-4 flex items-center justify-center">
-              <Target className="mr-3 text-accent-400" size={32} />
-              Future <span className="gradient-text">Roadmap</span>
+            <motion.div
+              className="inline-flex items-center space-x-3 bg-gradient-to-r from-accent-500/20 to-primary-500/20 backdrop-blur-sm border border-accent-500/30 px-6 py-3 rounded-full text-sm font-semibold text-accent-300 mb-8"
+              whileHover={{ scale: 1.05, y: -2 }}
+            >
+              <Target size={18} />
+              <span>Strategic Planning</span>
+            </motion.div>
+            <h3 className="text-4xl md:text-5xl font-black text-white mb-6">
+              Future <span className="gradient-text text-glow">Roadmap</span>
             </h3>
-            <p className="text-gray-400 text-lg">
-              Strategic goals and aspirations for continued growth
+            <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
+              Strategic goals and aspirations for continued professional growth
             </p>
           </div>
 

@@ -8,6 +8,10 @@ import {
   Award,
   BookOpen,
   X,
+  Star,
+  Trophy,
+  Target,
+  CheckCircle,
 } from "lucide-react";
 import { EducationData } from "../../assets/data/education";
 import { CertificationData } from "../../assets/data/certification";
@@ -15,6 +19,9 @@ import { CertificationData } from "../../assets/data/certification";
 const Education = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
+
+  // Tab state
+  const [activeTab, setActiveTab] = useState("education");
 
   // Modal state
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -24,13 +31,13 @@ const Education = () => {
   const openModal = (certification) => {
     setSelectedCertificate(certification);
     setIsModalOpen(true);
-    document.body.style.overflow = "hidden"; // Prevent background scroll
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedCertificate(null);
-    document.body.style.overflow = "unset"; // Restore scroll
+    document.body.style.overflow = "unset";
   };
 
   const containerVariants = {
@@ -38,7 +45,7 @@ const Education = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
+        staggerChildren: 0.2,
       },
     },
   };
@@ -49,7 +56,19 @@ const Education = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const tabVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
         ease: "easeOut",
       },
     },
@@ -57,42 +76,30 @@ const Education = () => {
 
   return (
     <section id="education" className="py-20 relative overflow-hidden">
-      {/* Background Elements */}
+      {/* Modern Background Elements */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute w-96 h-96 bg-gradient-to-br from-orange-500/15 to-red-500/10 rounded-full blur-3xl top-1/4 left-1/4"
+          className="absolute w-72 h-72 bg-gradient-to-br from-orange-500/10 to-red-500/5 rounded-full blur-3xl top-1/4 left-1/4"
           animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.1, 0.3, 0.1],
-            rotate: [0, 270, 360],
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1],
+            rotate: [0, 180, 360],
           }}
           transition={{
-            duration: 22,
+            duration: 20,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute w-64 h-64 bg-orange-500/15 rounded-full blur-2xl bottom-1/3 right-1/3"
+          className="absolute w-48 h-48 bg-orange-500/8 rounded-full blur-2xl bottom-1/3 right-1/3"
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.05, 0.25, 0.05],
-            x: [0, -40, 0],
+            scale: [1.1, 1, 1.1],
+            opacity: [0.05, 0.15, 0.05],
+            x: [0, -30, 0],
           }}
           transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute w-48 h-48 bg-orange-400/10 rounded-full blur-xl top-2/3 right-1/4"
-          animate={{
-            y: [0, 30, 0],
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{
-            duration: 9,
+            duration: 15,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -105,133 +112,108 @@ const Education = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {/* Section Header - Creative Layout */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-            <motion.div variants={itemVariants}>
-              <div className="space-y-6">
-                <div className="inline-flex items-center space-x-2 glass-effect px-4 py-2 rounded-full text-sm font-medium text-orange-400">
-                  <GraduationCap size={16} />
-                  <span>Learning Journey</span>
-                </div>
-                <h2 className="text-5xl md:text-6xl font-black leading-tight">
-                  <span className="text-white">Education &</span>
-                  <br />
-                  <span className="gradient-text text-glow">
-                    Certifications
-                  </span>
-                </h2>
-                <p className="text-xl text-gray-300 leading-relaxed">
-                  My academic foundation and professional certifications that
-                  fuel continuous innovation and expertise in cutting-edge
-                  technologies.
-                </p>
-              </div>
+          {/* Modern Header */}
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <motion.div
+              className="inline-flex items-center space-x-2 glass-effect px-6 py-3 rounded-full text-sm font-medium text-orange-400 mb-6"
+              whileHover={{ scale: 1.05 }}
+            >
+              <GraduationCap size={18} />
+              <span>Academic & Professional Journey</span>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="hidden lg:block">
-              <div className="relative">
-                <motion.div
-                  className="w-64 h-64 mx-auto relative"
-                  animate={{
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
+            <h2 className="text-5xl md:text-6xl font-black leading-tight mb-6">
+              <span className="text-white">Learning &</span>
+              <br />
+              <span className="gradient-text text-glow">Achievements</span>
+            </h2>
+
+            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+              A comprehensive overview of my educational foundation and
+              professional certifications that drive innovation and expertise.
+            </p>
+          </motion.div>
+
+          {/* Modern Tab Navigation */}
+          <motion.div variants={itemVariants} className="mb-12">
+            <div className="flex justify-center">
+              <div className="glass-effect p-2 rounded-2xl inline-flex space-x-2">
+                <motion.button
+                  onClick={() => setActiveTab("education")}
+                  className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center space-x-3 ${
+                    activeTab === "education"
+                      ? "bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg"
+                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                  }`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <div className="absolute inset-0 rounded-full border-2 border-orange-400/30"></div>
-                  <div className="absolute inset-8 rounded-full border border-orange-400/40"></div>
-                  <div className="absolute inset-16 rounded-full bg-gradient-to-br from-orange-500/15 to-red-500/10 flex items-center justify-center">
-                    <GraduationCap
-                      className="text-orange-400 text-glow"
-                      size={56}
-                    />
-                  </div>
+                  <GraduationCap size={20} />
+                  <span>Education</span>
+                </motion.button>
 
-                  {/* Floating Education Icons */}
-                  <motion.div
-                    className="absolute top-6 right-6 w-10 h-10 bg-gradient-to-br from-orange-500/30 to-red-500/20 rounded-xl flex items-center justify-center"
-                    animate={{
-                      y: [0, -15, 0],
-                      rotate: [0, 360],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <BookOpen size={20} className="text-orange-400" />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute bottom-6 left-6 w-10 h-10 bg-gradient-to-br from-red-500/30 to-orange-500/20 rounded-xl flex items-center justify-center"
-                    animate={{
-                      y: [0, 15, 0],
-                      rotate: [360, 0],
-                    }}
-                    transition={{
-                      duration: 7,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <Award size={20} className="text-red-400" />
-                  </motion.div>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Education Section */}
-            <motion.div variants={itemVariants}>
-              <div className="flex items-center mb-8">
-                <motion.div
-                  className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mr-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.2 }}
+                <motion.button
+                  onClick={() => setActiveTab("certifications")}
+                  className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center space-x-3 ${
+                    activeTab === "certifications"
+                      ? "bg-gradient-to-r from-red-500 to-orange-600 text-white shadow-lg"
+                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                  }`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <GraduationCap className="text-white" size={24} />
-                </motion.div>
-                <h3 className="text-3xl font-bold text-white">
-                  Academic <span className="gradient-text">Background</span>
-                </h3>
+                  <Award size={20} />
+                  <span>Certifications</span>
+                </motion.button>
               </div>
+            </div>
+          </motion.div>
 
-              <div className="space-y-6">
-                {EducationData.map((education, index) => (
-                  <motion.div
-                    key={index}
-                    variants={{
-                      hidden: { opacity: 0, x: -50 },
-                      visible: {
-                        opacity: 1,
-                        x: 0,
-                        transition: {
-                          duration: 0.6,
-                          delay: index * 0.2,
-                          ease: "easeOut",
-                        },
-                      },
-                    }}
-                    whileHover={{ scale: 1.02, x: 10 }}
-                    className="glass-effect p-6 rounded-xl group cursor-pointer border-l-4 border-orange-500/50 hover:border-orange-400"
-                  >
-                    {/* Timeline Indicator */}
-                    <div className="flex items-start">
+          {/* Content Area */}
+          <motion.div className="relative min-h-[600px]">
+            {/* Education Tab */}
+            {activeTab === "education" && (
+              <motion.div
+                key="education"
+                variants={tabVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="grid lg:grid-cols-2 gap-8"
+              >
+                {/* Timeline */}
+                <div className="relative">
+                  {/* Vertical Line */}
+                  <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-red-500 to-orange-500 opacity-30"></div>
+
+                  <div className="space-y-8">
+                    {EducationData.map((education, index) => (
                       <motion.div
-                        className="w-4 h-4 bg-orange-500 rounded-full mt-2 mr-4 flex-shrink-0"
-                        whileHover={{ scale: 1.5 }}
-                        transition={{ duration: 0.2 }}
+                        key={index}
+                        variants={{
+                          hidden: { opacity: 0, x: -50 },
+                          visible: {
+                            opacity: 1,
+                            x: 0,
+                            transition: {
+                              duration: 0.6,
+                              delay: index * 0.2,
+                              ease: "easeOut",
+                            },
+                          },
+                        }}
+                        className="relative"
                       >
+                        {/* Timeline Node */}
                         <motion.div
-                          className="absolute w-4 h-4 bg-orange-400 rounded-full"
+                          className="absolute left-6 w-4 h-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-full border-4 border-dark-900 z-10"
+                          whileHover={{ scale: 1.5 }}
                           animate={{
-                            scale: [1, 1.5, 1],
-                            opacity: [1, 0, 1],
+                            boxShadow: [
+                              "0 0 0 0 rgba(249, 115, 22, 0.7)",
+                              "0 0 0 10px rgba(249, 115, 22, 0)",
+                              "0 0 0 0 rgba(249, 115, 22, 0)",
+                            ],
                           }}
                           transition={{
                             duration: 2,
@@ -239,112 +221,190 @@ const Education = () => {
                             delay: index * 0.5,
                           }}
                         />
-                      </motion.div>
 
-                      <div className="flex-1">
-                        <h4 className="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors duration-200">
-                          {education.institution}
-                        </h4>
+                        {/* Card */}
+                        <motion.div
+                          className="ml-16 glass-effect p-6 rounded-2xl group cursor-pointer border border-orange-500/20 hover:border-orange-400/40"
+                          whileHover={{
+                            scale: 1.02,
+                            y: -5,
+                            boxShadow: "0 20px 40px rgba(249, 115, 22, 0.1)",
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex-1">
+                              <h4 className="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors duration-200">
+                                {education.institution}
+                              </h4>
 
-                        <div className="flex items-center text-orange-400 mb-2">
-                          <BookOpen size={16} className="mr-2" />
-                          <span className="font-medium">{education.major}</span>
-                        </div>
+                              <div className="flex items-center text-orange-400 mb-2">
+                                <BookOpen size={16} className="mr-2" />
+                                <span className="font-medium">
+                                  {education.major}
+                                </span>
+                              </div>
 
-                        <div className="flex items-center text-gray-400 text-sm mb-2">
-                          <Calendar size={16} className="mr-2" />
-                          <span>{education.timeSpan}</span>
-                        </div>
+                              <div className="flex items-center text-gray-400 text-sm">
+                                <Calendar size={16} className="mr-2" />
+                                <span>{education.timeSpan}</span>
+                              </div>
+                            </div>
 
-                        {education.note && (
-                          <div className="mt-3">
-                            <span className="px-3 py-1 bg-orange-500/20 text-orange-400 text-xs rounded-full border border-orange-500/30">
-                              {education.note}
-                            </span>
+                            <motion.div
+                              className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-red-500/10 rounded-xl flex items-center justify-center"
+                              whileHover={{ rotate: 360 }}
+                              transition={{ duration: 0.5 }}
+                            >
+                              <GraduationCap
+                                className="text-orange-400"
+                                size={24}
+                              />
+                            </motion.div>
                           </div>
-                        )}
+
+                          {education.note && (
+                            <motion.div
+                              className="mt-4"
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.2 }}
+                            >
+                              <span className="inline-flex items-center px-3 py-1 bg-orange-500/20 text-orange-400 text-xs rounded-full border border-orange-500/30">
+                                <Star size={12} className="mr-1" />
+                                {education.note}
+                              </span>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Education Stats */}
+                <motion.div variants={itemVariants} className="space-y-6">
+                  <div className="glass-effect p-8 rounded-2xl border border-orange-500/20">
+                    <motion.div
+                      className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-red-500/15 rounded-2xl flex items-center justify-center mx-auto mb-6"
+                      whileHover={{ scale: 1.1, rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Target className="text-orange-400" size={32} />
+                    </motion.div>
+
+                    <h4 className="text-2xl font-bold mb-4 gradient-text text-center">
+                      Learning Philosophy
+                    </h4>
+
+                    <p className="text-gray-400 leading-relaxed text-center mb-6">
+                      Education is a lifelong journey. Combining formal
+                      education with continuous learning through practical
+                      projects and industry trends.
+                    </p>
+
+                    {/* <div className="grid grid-cols-2 gap-4">
+                      <div className="text-center p-4 bg-orange-500/10 rounded-xl">
+                        <div className="text-2xl font-bold text-orange-400">
+                          {EducationData.length}
+                        </div>
+                        <div className="text-sm text-gray-400">Degrees</div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Certifications Section */}
-            <motion.div variants={itemVariants}>
-              <div className="flex items-center mb-8">
-                <motion.div
-                  className="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl flex items-center justify-center mr-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Award className="text-white" size={24} />
+                      <div className="text-center p-4 bg-red-500/10 rounded-xl">
+                        <div className="text-2xl font-bold text-red-400">∞</div>
+                        <div className="text-sm text-gray-400">Learning</div>
+                      </div>
+                    </div> */}
+                  </div>
                 </motion.div>
-                <h3 className="text-3xl font-bold text-white">
-                  Professional{" "}
-                  <span className="gradient-text">Certifications</span>
-                </h3>
-              </div>
+              </motion.div>
+            )}
 
-              <div className="space-y-6">
+            {/* Certifications Tab */}
+            {activeTab === "certifications" && (
+              <motion.div
+                key="certifications"
+                variants={tabVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
                 {CertificationData.map((certification, index) => (
                   <motion.div
                     key={index}
                     variants={{
-                      hidden: { opacity: 0, x: 50 },
+                      hidden: { opacity: 0, y: 50 },
                       visible: {
                         opacity: 1,
-                        x: 0,
+                        y: 0,
                         transition: {
                           duration: 0.6,
-                          delay: index * 0.2,
+                          delay: index * 0.1,
                           ease: "easeOut",
                         },
                       },
                     }}
-                    whileHover={{ scale: 1.02, x: -10 }}
-                    className="glass-effect p-6 rounded-xl group cursor-pointer border-r-4 border-red-500/50 hover:border-red-400"
+                    className="group"
                   >
-                    <div className="flex items-center">
-                      {/* Certificate Image - Now clickable */}
+                    <motion.div
+                      className="glass-effect p-6 rounded-2xl cursor-pointer border border-red-500/20 hover:border-red-400/40 h-full"
+                      whileHover={{
+                        scale: 1.05,
+                        y: -10,
+                        boxShadow: "0 20px 40px rgba(239, 68, 68, 0.1)",
+                      }}
+                      transition={{ duration: 0.3 }}
+                      onClick={() =>
+                        certification.image && openModal(certification)
+                      }
+                    >
+                      {/* Certificate Image */}
                       <motion.div
-                        className="w-24 h-20 bg-gradient-to-br from-orange-500/20 to-red-600/20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0 cursor-pointer"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ duration: 0.2 }}
-                        onClick={() =>
-                          certification.image && openModal(certification)
-                        }
+                        className="w-full h-32 bg-gradient-to-br from-red-500/20 to-orange-600/20 rounded-xl flex items-center justify-center mb-4 overflow-hidden"
+                        whileHover={{ scale: 1.05 }}
                       >
                         {certification.image ? (
                           <img
                             src={certification.image}
                             alt={certification.name}
-                            className="w-full h-full object-cover rounded-lg hover:opacity-80 transition-opacity duration-200"
+                            className="w-full h-full object-cover rounded-xl group-hover:opacity-80 transition-opacity duration-200"
                           />
                         ) : (
-                          <Award className="text-orange-400" size={24} />
+                          <Award className="text-red-400" size={32} />
                         )}
                       </motion.div>
 
-                      <div className="flex-1">
-                        <h4 className="text-lg font-bold text-white group-hover:text-orange-400 transition-colors duration-200">
+                      {/* Certificate Info */}
+                      <div className="space-y-3">
+                        <h4 className="text-lg font-bold text-white group-hover:text-red-400 transition-colors duration-200 line-clamp-2">
                           {certification.name}
                         </h4>
 
-                        <p className="text-gray-400 text-base mb-1">
+                        <p className="text-gray-400 text-sm">
                           {certification.publisher}
                         </p>
 
-                        <div className="flex items-center text-gray-400 text-sm">
-                          <Calendar size={16} className="mr-2" />
-                          <span>{certification.year}</span>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center text-gray-400 text-sm">
+                            <Calendar size={14} className="mr-2" />
+                            <span>{certification.year}</span>
+                          </div>
+
+                          <motion.div
+                            className="w-8 h-8 bg-red-500/20 rounded-full flex items-center justify-center"
+                            whileHover={{ scale: 1.2, rotate: 360 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <CheckCircle className="text-red-400" size={16} />
+                          </motion.div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   </motion.div>
                 ))}
 
-                {/* Add More Certifications Placeholder */}
+                {/* Add More Placeholder */}
                 <motion.div
                   variants={{
                     hidden: { opacity: 0, scale: 0.8 },
@@ -353,99 +413,101 @@ const Education = () => {
                       scale: 1,
                       transition: {
                         duration: 0.5,
-                        delay: CertificationData.length * 0.2,
+                        delay: CertificationData.length * 0.1,
                         ease: "easeOut",
                       },
                     },
                   }}
-                  className="glass-effect p-6 rounded-xl border-2 border-dashed border-orange-500/30 text-center group hover:border-orange-500/50 transition-colors duration-200"
+                  className="group"
                 >
                   <motion.div
-                    className="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
-                    whileHover={{ scale: 1.1, rotate: 180 }}
-                    transition={{ duration: 0.3 }}
+                    className="glass-effect p-6 rounded-2xl border-2 border-dashed border-red-500/30 text-center group hover:border-red-500/50 transition-colors duration-200 h-full flex flex-col justify-center"
+                    whileHover={{ scale: 1.02 }}
                   >
-                    <span className="text-2xl">📚</span>
-                  </motion.div>
-                  <h4 className="text-lg font-semibold text-orange-400 mb-2">
-                    Continuous Learning
-                  </h4>
-                  <p className="text-gray-400 text-sm">
-                    Always pursuing new certifications and expanding knowledge
-                    in emerging technologies.
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
+                    <motion.div
+                      className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                      whileHover={{ scale: 1.1, rotate: 180 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Trophy className="text-red-400" size={24} />
+                    </motion.div>
 
-          {/* Education Summary */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-16 text-center glass-effect p-8 rounded-2xl border border-orange-500/20"
-          >
-            <motion.div
-              className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-red-500/15 rounded-full flex items-center justify-center mx-auto mb-6"
-              whileHover={{ scale: 1.1, rotate: 360 }}
-              transition={{ duration: 0.5 }}
-            >
-              <GraduationCap className="text-orange-400" size={32} />
-            </motion.div>
-            <h4 className="text-2xl font-bold mb-4 gradient-text">
-              Learning Philosophy
-            </h4>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              Education is a lifelong journey. While formal education provided
-              the foundation, I believe in continuous learning through hands-on
-              projects, online courses, and staying updated with industry trends
-              and best practices.
-            </p>
+                    <h4 className="text-lg font-semibold text-red-400 mb-2">
+                      More Coming Soon
+                    </h4>
+
+                    <p className="text-gray-400 text-sm">
+                      Continuously pursuing new certifications and expanding
+                      expertise.
+                    </p>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            )}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Certificate Modal */}
+      {/* Enhanced Certificate Modal - Optimized */}
       {isModalOpen && selectedCertificate && (
         <motion.div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.15 }} // Reduced from 0.2 to 0.15
         >
-          {/* Backdrop */}
+          {/* Backdrop - Optimized */}
           <motion.div
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/80" // Removed backdrop-blur-sm for better performance
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }} // Faster backdrop animation
             onClick={closeModal}
           />
 
-          {/* Modal Content */}
+          {/* Modal Content - Optimized animations */}
           <motion.div
-            className="relative bg-gray-900/95 backdrop-blur-md rounded-2xl border border-orange-500/20 max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl"
-            initial={{ scale: 0.8, opacity: 0, y: 50 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.8, opacity: 0, y: 50 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="relative bg-gray-900/95 rounded-2xl border border-red-500/20 max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl"
+            initial={{ scale: 0.9, opacity: 0 }} // Reduced scale change from 0.8 to 0.9
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{
+              duration: 0.2, // Reduced from 0.3 to 0.2
+              ease: "easeOut",
+              type: "spring", // Added spring for smoother feel
+              stiffness: 300,
+              damping: 30,
+            }}
           >
-            {/* Close Button */}
+            {/* Close Button - Optimized */}
             <motion.button
-              className="absolute top-4 right-4 z-10 w-10 h-10 bg-red-500/20 hover:bg-red-500/30 rounded-full flex items-center justify-center text-white transition-colors duration-200"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              className="absolute top-4 right-4 z-10 w-10 h-10 bg-red-500/20 hover:bg-red-500/30 rounded-full flex items-center justify-center text-white transition-colors duration-150" // Reduced duration from 200 to 150
+              whileHover={{ scale: 1.05 }} // Reduced from 1.1 to 1.05
+              whileTap={{ scale: 0.95 }} // Reduced from 0.9 to 0.95
+              transition={{ duration: 0.1 }} // Added faster transition
               onClick={closeModal}
             >
               <X size={20} />
             </motion.button>
 
-            {/* Modal Header */}
-            <div className="p-6 border-b border-orange-500/20">
-              <h3 className="text-2xl font-bold text-white mb-2">
+            {/* Modal Header - Simplified animation */}
+            <div className="p-6 border-b border-red-500/20">
+              <motion.h3
+                className="text-2xl font-bold text-white mb-2"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: 0.1 }}
+              >
                 {selectedCertificate.name}
-              </h3>
-              <div className="flex items-center text-orange-400">
+              </motion.h3>
+              <motion.div
+                className="flex items-center text-red-400"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2, delay: 0.15 }}
+              >
                 <Award size={16} className="mr-2" />
                 <span className="font-medium">
                   {selectedCertificate.publisher}
@@ -453,31 +515,43 @@ const Education = () => {
                 <span className="mx-2 text-gray-500">•</span>
                 <Calendar size={16} className="mr-2" />
                 <span>{selectedCertificate.year}</span>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Certificate Image */}
+            {/* Certificate Image - Optimized loading */}
             <div className="p-6">
               <motion.div
-                className="relative overflow-hidden rounded-xl bg-gradient-to-br from-orange-500/10 to-red-500/5"
-                initial={{ scale: 0.9, opacity: 0 }}
+                className="relative overflow-hidden rounded-xl bg-gradient-to-br from-red-500/10 to-orange-500/5"
+                initial={{ scale: 0.95, opacity: 0 }} // Reduced scale change
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.3 }}
+                transition={{
+                  delay: 0.1, // Reduced delay from 0.2 to 0.1
+                  duration: 0.25, // Reduced from 0.3 to 0.25
+                  ease: "easeOut",
+                }}
               >
                 <img
                   src={selectedCertificate.image}
                   alt={selectedCertificate.name}
                   className="w-full h-auto max-h-[60vh] object-contain rounded-xl"
+                  loading="lazy" // Added lazy loading for better performance
+                  style={{
+                    willChange: "transform", // Optimize for animations
+                    backfaceVisibility: "hidden", // Prevent flickering
+                  }}
                 />
               </motion.div>
             </div>
 
-            {/* Modal Footer */}
+            {/* Modal Footer - Simplified */}
             <div className="p-6 pt-0">
               <motion.button
-                className="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-orange-600 hover:to-red-700 transition-all duration-200 flex items-center justify-center space-x-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="w-full bg-gradient-to-r from-red-500 to-orange-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-red-600 hover:to-orange-700 transition-all duration-150 flex items-center justify-center space-x-2" // Reduced duration
+                whileHover={{ scale: 1.01 }} // Reduced from 1.02 to 1.01
+                whileTap={{ scale: 0.99 }} // Reduced from 0.98 to 0.99
+                transition={{ duration: 0.1 }} // Added faster transition
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 onClick={closeModal}
               >
                 <span>Close Certificate</span>
