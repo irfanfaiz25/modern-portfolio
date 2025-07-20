@@ -14,7 +14,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi! I'm your AI assistant. Ask me anything about my skills, projects, or experience! 👋",
+      text: "Hi! I'm Tomsistant, your AI assistant. Ask me anything about my skills, projects, or experience! 👋",
       isAI: true,
       timestamp: new Date(),
     },
@@ -62,7 +62,7 @@ const ChatBot = () => {
   };
 
   const portfolioContext = `
-  You are an AI assistant for a portfolio website. Here's information about the portfolio owner:
+  You are Tomsistant, an AI assistant for a portfolio website. Here's information about the portfolio owner:
 
   Name: Ahmad Irfan Faiz
   
@@ -156,45 +156,50 @@ const ChatBot = () => {
         <motion.button
           onClick={() => setIsOpen(true)}
           className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05 }} // Reduced from 1.1 to 1.05
+          whileTap={{ scale: 0.95 }} // Reduced from 0.9 to 0.95
+          // Removed heavy boxShadow animation, replaced with simpler pulse
           animate={{
-            boxShadow: [
-              "0 0 0 0 rgba(249, 115, 22, 0.7)",
-              "0 0 0 10px rgba(249, 115, 22, 0)",
-              "0 0 0 0 rgba(249, 115, 22, 0)",
-            ],
+            scale: [1, 1.02, 1], // Lighter pulse effect
           }}
           transition={{
             duration: 2,
             repeat: Infinity,
             repeatType: "loop",
+            ease: "easeInOut", // Added easing for smoother animation
           }}
         >
           <MessageCircle size={20} className="sm:w-6 sm:h-6" />
         </motion.button>
       )}
 
-      {/* Chat Window - Fully responsive */}
-      <AnimatePresence>
+      {/* Chat Window - Optimized animations */}
+      <AnimatePresence mode="wait">
+        {" "} 
+        {/* Added mode="wait" for better performance */}
         {isOpen && (
           <>
-            {/* Backdrop */}
+            {/* Backdrop - Removed heavy blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+              transition={{ duration: 0.2 }} // Faster transition
+              className="fixed inset-0 bg-black/30 z-40" // Removed backdrop-blur-sm
               onClick={handleBackdropClick}
             />
 
-            {/* Chat Modal - Responsive sizing and positioning */}
+            {/* Chat Modal - Simplified animations */}
             <motion.div
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 100, scale: 0.8 }}
+              initial={{ opacity: 0, y: 50 }} // Removed scale, reduced y movement
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{
+                duration: 0.25, // Faster animation
+                ease: "easeOut", // Better easing
+              }}
               className="
-                fixed z-50 bg-dark-800/90 backdrop-blur-lg border border-primary-500/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden
+                fixed z-50 bg-dark-800/95 border border-primary-500/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden
                 /* Mobile: Full screen with padding */
                 bottom-0 left-0 right-0 top-16 mx-4 mb-4 mt-4
                 /* Tablet and up: Fixed size bottom-right */
@@ -202,6 +207,7 @@ const ChatBot = () => {
                 /* Large screens: Slightly bigger */
                 lg:w-[420px] lg:h-[550px]
               "
+              // Removed backdrop-blur-lg for better performance
             >
               {/* Header - Always visible with responsive padding */}
               <div className="bg-gradient-to-r from-primary-500/20 to-primary-600/20 p-3 sm:p-4 border-b border-primary-500/20 flex-shrink-0">
