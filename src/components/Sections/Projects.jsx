@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
@@ -9,6 +9,9 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  Play,
+  Code,
+  Zap,
 } from "lucide-react";
 import { ProjectsData } from "../../assets/data/projects";
 
@@ -50,7 +53,7 @@ const Projects = () => {
 
   const openProjectModal = (project) => {
     setSelectedProject(project);
-    setCurrentImageIndex(0); // Reset to first image
+    setCurrentImageIndex(0);
   };
 
   const closeProjectModal = () => {
@@ -63,7 +66,7 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -74,7 +77,7 @@ const Projects = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: "easeOut",
       },
     },
@@ -98,33 +101,10 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
-      {/* Background Elements */}
+      {/* Simplified Background */}
       <div className="absolute inset-0">
-        <motion.div
-          className="absolute w-80 h-80 bg-gradient-to-br from-primary-500/15 to-accent-500/10 rounded-full blur-3xl top-1/4 right-1/4"
-          animate={{
-            scale: [1, 1.4, 1],
-            opacity: [0.1, 0.25, 0.1],
-            rotate: [0, 90, 180],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute w-64 h-64 bg-accent-500/10 rounded-full blur-2xl bottom-1/3 left-1/3"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.05, 0.2, 0.05],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        <div className="absolute w-96 h-96 bg-gradient-to-br from-primary-500/8 to-accent-500/6 rounded-full blur-3xl top-10 right-10" />
+        <div className="absolute w-80 h-80 bg-gradient-to-br from-accent-500/6 to-primary-500/4 rounded-full blur-3xl bottom-20 left-15" />
       </div>
 
       <div className="container-custom relative z-10" ref={ref}>
@@ -133,347 +113,347 @@ const Projects = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {/* Section Header - Creative Layout */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <motion.div variants={itemVariants} className="space-y-6">
-              <div className="inline-flex items-center space-x-2 glass-effect px-4 py-2 rounded-full text-sm font-medium text-primary-400">
-                <Filter size={16} />
-                <span>Portfolio</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-black leading-tight">
-                <span className="text-white">Featured</span>
-                <br />
-                <span className="gradient-text text-glow">Projects</span>
-              </h2>
-              <p className="text-xl text-gray-300 leading-relaxed">
-                A curated collection of my development work, showcasing
-                expertise in backend development, web technologies, and
-                innovative problem-solving.
-              </p>
-            </motion.div>
+          {/* Section Header */}
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 glass-effect px-6 py-3 rounded-full text-sm font-medium text-primary-400 mb-6">
+              <Filter size={16} />
+              <span>Featured Work</span>
+            </div>
 
-            <motion.div variants={itemVariants} className="hidden lg:block">
-              <div className="relative">
-                <motion.div
-                  className="w-64 h-64 mx-auto relative"
-                  animate={{
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                >
-                  <div className="absolute inset-0 rounded-full border-2 border-primary-400/20"></div>
-                  <div className="absolute inset-8 rounded-full border border-accent-400/30"></div>
-                  <div className="absolute inset-16 rounded-full bg-gradient-to-br from-primary-500/10 to-accent-500/10 flex items-center justify-center">
-                    <Filter className="text-primary-400 text-glow" size={48} />
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
+            <motion.h2
+              className="text-5xl md:text-7xl font-black leading-tight mb-6"
+              variants={itemVariants}
+            >
+              <span className="text-white">My</span>{" "}
+              <span className="gradient-text text-glow">Projects</span>
+            </motion.h2>
 
-          {/* Filter Buttons - Enhanced Design */}
+            <motion.p
+              className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto"
+              variants={itemVariants}
+            >
+              Discover my latest work showcasing innovative solutions, clean
+              code, and modern web technologies. Each project represents a
+              unique challenge and creative solution.
+            </motion.p>
+          </motion.div>
+
+          {/* Filter Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            className="flex flex-wrap justify-center gap-3 mb-16"
           >
             {filters.map((filterOption) => (
               <motion.button
                 key={filterOption}
                 onClick={() => setFilter(filterOption)}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`relative px-6 py-3 rounded-xl font-semibold transition-all duration-200 overflow-hidden ${
                   filter === filterOption
-                    ? "bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-xl shadow-primary-500/30 glow-effect"
+                    ? "bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg shadow-primary-500/20"
                     : "glass-effect text-gray-300 hover:text-primary-400 hover:bg-primary-500/10"
                 }`}
               >
-                {filterOption}
+                {filter === filterOption && (
+                  <motion.div
+                    layoutId="activeFilter"
+                    className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{filterOption}</span>
               </motion.button>
             ))}
           </motion.div>
 
           {/* Projects Grid */}
-          <motion.div className="grid gap-8 md:gap-10" layout>
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                layout
-                variants={{
-                  hidden: { opacity: 0, scale: 0.8 },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                    transition: {
-                      duration: 0.5,
-                      delay: index * 0.1,
-                      ease: "easeOut",
-                    },
-                  },
-                }}
-                whileHover={{ y: -5 }}
-                className={`glass-effect rounded-2xl overflow-hidden group ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                } flex flex-col md:flex`}
-              >
-                {/* Project Image */}
-                <div className="md:w-1/2 relative overflow-hidden">
-                  <motion.div
-                    className="aspect-video bg-gradient-to-br from-primary-500/20 to-primary-600/20 flex items-center justify-center"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {project.images && project.images.length > 0 ? (
-                      <img
-                        src={project.images[0]}
-                        alt={project.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="text-6xl text-primary-400 opacity-50">
-                        🚀
-                      </div>
-                    )}
-                  </motion.div>
-
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                    <motion.button
-                      onClick={() => openProjectModal(project)}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 shadow-lg"
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            layout
+          >
+            <AnimatePresence>
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.name}
+                  layout
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: index * 0.05,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{ y: -5 }}
+                  className={`glass-effect rounded-2xl overflow-hidden group cursor-pointer ${
+                    index % 3 === 0 ? "md:row-span-2" : ""
+                  }`}
+                  onClick={() => openProjectModal(project)}
+                >
+                  {/* Project Image */}
+                  <div className="relative overflow-hidden">
+                    <div
+                      className={`${
+                        index % 3 === 0 ? "aspect-[4/5]" : "aspect-video"
+                      } bg-gradient-to-br from-primary-500/20 to-primary-600/20 flex items-center justify-center relative`}
                     >
-                      <Eye size={16} />
-                      <span>View Details</span>
-                    </motion.button>
-                  </div>
-                </div>
+                      {project.images && project.images.length > 0 ? (
+                        <img
+                          src={project.images[0]}
+                          alt={project.name}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="text-6xl text-primary-400 opacity-50">
+                          🚀
+                        </div>
+                      )}
+                    </div>
 
-                {/* Project Content */}
-                <div className="md:w-1/2 p-8 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors duration-200">
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/20 to-transparent" />
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-primary-600/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="flex space-x-3">
+                        <button
+                          className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors duration-200"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openProjectModal(project);
+                          }}
+                        >
+                          <Eye size={20} />
+                        </button>
+                        {project.url && (
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors duration-200"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <ExternalLink size={20} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Project Number Badge */}
+                    <div className="absolute top-4 left-4 bg-primary-600/80 backdrop-blur-sm text-white text-sm font-bold px-3 py-1 rounded-full">
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
+                  </div>
+
+                  {/* Project Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors duration-200">
                       {project.name}
                     </h3>
 
-                    <p className="text-gray-400 leading-relaxed mb-6">
+                    <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
                       {project.short_description}
                     </p>
 
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.techStack.map((tech, techIndex) => (
-                        <motion.span
+                    {/* Tech Stack Pills */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.techStack.slice(0, 3).map((tech, techIndex) => (
+                        <span
                           key={techIndex}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.1 + techIndex * 0.05 }}
-                          className={`px-3 py-1 rounded-full text-xs font-medium border ${getTechColor(
+                          className={`px-2 py-1 rounded-full text-xs font-medium border ${getTechColor(
                             tech
                           )}`}
                         >
                           {tech}
-                        </motion.span>
+                        </span>
                       ))}
+                      {project.techStack.length > 3 && (
+                        <span className="px-2 py-1 rounded-full text-xs font-medium bg-gray-500/20 text-gray-400 border border-gray-500/30">
+                          +{project.techStack.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Project Status */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-green-400 rounded-full" />
+                        <span className="text-xs text-gray-400">
+                          Live Project
+                        </span>
+                      </div>
+                      <div className="text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <Play size={16} />
+                      </div>
                     </div>
                   </div>
-
-                  {/* Project Links */}
-                  <div className="flex space-x-4">
-                    {project.url && (
-                      <motion.a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
-                      >
-                        <ExternalLink size={16} />
-                        <span>
-                          {project.url.includes("github.com")
-                            ? "Source Code"
-                            : "Live Demo"}
-                        </span>
-                      </motion.a>
-                    )}
-
-                    <motion.button
-                      onClick={() => openProjectModal(project)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center space-x-2 glass-effect text-white px-4 py-2 rounded-lg hover:bg-white/10 transition-colors duration-200"
-                    >
-                      <Eye size={16} />
-                      <span>Details</span>
-                    </motion.button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Enhanced Project Modal with Image Carousel */}
-      {selectedProject && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={closeProjectModal}
-        >
+      {/* Project Modal */}
+      <AnimatePresence>
+        {selectedProject && (
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            className="glass-effect rounded-2xl p-8 max-w-6xl max-h-[90vh] overflow-y-auto w-full"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={closeProjectModal}
           >
-            {/* Modal Header */}
-            <div className="flex justify-between items-start mb-6">
-              <h3 className="text-3xl font-bold gradient-text">
-                {selectedProject.name}
-              </h3>
-              <motion.button
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="glass-effect rounded-2xl p-8 max-w-6xl max-h-[90vh] overflow-y-auto w-full relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
                 onClick={closeProjectModal}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors duration-200 z-10 hover:rotate-90 transition-transform"
               >
                 <X size={24} />
-              </motion.button>
-            </div>
+              </button>
 
-            {/* Image Carousel Section */}
-            {selectedProject.images && selectedProject.images.length > 0 && (
+              {/* Modal Header */}
               <div className="mb-8">
-                <div className="relative">
-                  {/* Main Image Display */}
-                  <motion.div
-                    className="aspect-video bg-gradient-to-br from-primary-500/10 to-primary-600/10 rounded-xl overflow-hidden"
-                    key={currentImageIndex}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <img
-                      src={selectedProject.images[currentImageIndex]}
-                      alt={`${selectedProject.name} - Image ${
-                        currentImageIndex + 1
-                      }`}
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
+                <h3 className="text-4xl font-bold gradient-text mb-4">
+                  {selectedProject.name}
+                </h3>
+                <p className="text-gray-300 text-lg">
+                  {selectedProject.short_description}
+                </p>
+              </div>
 
-                  {/* Navigation Arrows - Only show if more than 1 image */}
+              {/* Image Carousel */}
+              {selectedProject.images && selectedProject.images.length > 0 && (
+                <div className="mb-8">
+                  <div className="relative">
+                    {/* Main Image */}
+                    <div className="aspect-video bg-gradient-to-br from-primary-500/10 to-primary-600/10 rounded-xl overflow-hidden">
+                      <img
+                        src={selectedProject.images[currentImageIndex]}
+                        alt={`${selectedProject.name} - Image ${
+                          currentImageIndex + 1
+                        }`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    {selectedProject.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={prevImage}
+                          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200"
+                        >
+                          <ChevronLeft size={24} />
+                        </button>
+
+                        <button
+                          onClick={nextImage}
+                          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200"
+                        >
+                          <ChevronRight size={24} />
+                        </button>
+                      </>
+                    )}
+
+                    {/* Image Counter */}
+                    {selectedProject.images.length > 1 && (
+                      <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
+                        {currentImageIndex + 1} /{" "}
+                        {selectedProject.images.length}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Thumbnail Navigation */}
                   {selectedProject.images.length > 1 && (
-                    <>
-                      <motion.button
-                        onClick={prevImage}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200"
-                      >
-                        <ChevronLeft size={24} />
-                      </motion.button>
-
-                      <motion.button
-                        onClick={nextImage}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200"
-                      >
-                        <ChevronRight size={24} />
-                      </motion.button>
-                    </>
-                  )}
-
-                  {/* Image Counter */}
-                  {selectedProject.images.length > 1 && (
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
-                      {currentImageIndex + 1} / {selectedProject.images.length}
+                    <div className="flex space-x-3 mt-4 overflow-x-auto pb-2">
+                      {selectedProject.images.map((image, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                            index === currentImageIndex
+                              ? "border-primary-400 ring-2 ring-primary-400/50 shadow-lg"
+                              : "border-gray-600 hover:border-gray-400"
+                          }`}
+                        >
+                          <img
+                            src={image}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
                     </div>
                   )}
                 </div>
+              )}
 
-                {/* Thumbnail Navigation - Only show if more than 1 image */}
-                {selectedProject.images.length > 1 && (
-                  <div className="flex space-x-3 mt-4 overflow-x-auto pb-2">
-                    {selectedProject.images.map((image, index) => (
-                      <motion.button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                          index === currentImageIndex
-                            ? "border-primary-400 ring-2 ring-primary-400/50"
-                            : "border-gray-600 hover:border-gray-400"
-                        }`}
-                      >
-                        <img
-                          src={image}
-                          alt={`Thumbnail ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </motion.button>
-                    ))}
+              {/* Modal Content */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-xl font-semibold text-white mb-3 flex items-center">
+                      <Code className="mr-2 text-primary-400" size={20} />
+                      Project Description
+                    </h4>
+                    <p className="text-gray-300 leading-relaxed">
+                      {selectedProject.description}
+                    </p>
                   </div>
-                )}
-              </div>
-            )}
 
-            {/* Modal Content */}
-            <div className="space-y-6">
-              <p className="text-gray-300 leading-relaxed">
-                {selectedProject.description}
-              </p>
+                  {/* Action Buttons */}
+                  <div className="flex space-x-4">
+                    {selectedProject.url && (
+                      <a
+                        href={selectedProject.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-2 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white px-6 py-3 rounded-lg transition-all duration-200 shadow-lg"
+                      >
+                        <ExternalLink size={18} />
+                        <span>Visit Live Site</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
 
-              {/* Tech Stack */}
-              <div>
-                <h4 className="text-lg font-semibold text-white mb-3">
-                  Technologies Used
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.techStack.map((tech, index) => (
-                    <span
-                      key={index}
-                      className={`px-3 py-1 rounded-full text-sm font-medium border ${getTechColor(
-                        tech
-                      )}`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="space-y-6">
+                  {/* Tech Stack */}
+                  <div>
+                    <h4 className="text-xl font-semibold text-white mb-4 flex items-center">
+                      <Zap className="mr-2 text-accent-400" size={20} />
+                      Technologies Used
+                    </h4>
+                    <div className="grid grid-cols-2 gap-3">
+                      {selectedProject.techStack.map((tech, index) => (
+                        <div
+                          key={index}
+                          className={`px-4 py-2 rounded-lg text-sm font-medium border text-center ${getTechColor(
+                            tech
+                          )}`}
+                        >
+                          {tech}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* Links */}
-              <div className="flex space-x-4">
-                {selectedProject.url && (
-                  <motion.a
-                    href={selectedProject.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg transition-colors duration-200"
-                  >
-                    <ExternalLink size={18} />
-                    <span>Visit Website</span>
-                  </motion.a>
-                )}
-              </div>
-            </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 };
