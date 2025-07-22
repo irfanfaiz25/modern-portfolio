@@ -161,13 +161,13 @@ const Contact = () => {
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com/in/irfanfaiz25",
+      href: "https://www.linkedin.com/in/ahmad-irfan-faiz/",
       color: "hover:text-blue-400",
     },
     {
       icon: Mail,
       label: "Email",
-      href: "mailto:irfanfaiz25@gmail.com",
+      href: "mailto:ahmadirfanfaiz13@gmail.com",
       color: "hover:text-red-400",
     },
   ];

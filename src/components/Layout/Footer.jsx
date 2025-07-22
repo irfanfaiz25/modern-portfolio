@@ -1,17 +1,21 @@
-import { motion } from 'framer-motion';
-import { Heart, ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Heart, ArrowUp, Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/irfanfaiz25', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/irfanfaiz25', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:irfanfaiz25@gmail.com', label: 'Email' },
+    { icon: Github, href: "https://github.com/irfanfaiz25", label: "GitHub" },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/ahmad-irfan-faiz/",
+      label: "LinkedIn",
+    },
+    { icon: Mail, href: "mailto:ahmadirfanfaiz13@gmail.com", label: "Email" },
   ];
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -28,7 +32,7 @@ const Footer = () => {
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
         <motion.div
@@ -41,7 +45,7 @@ const Footer = () => {
           transition={{
             duration: 18,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
         <motion.div
@@ -53,7 +57,7 @@ const Footer = () => {
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
       </div>
@@ -83,7 +87,8 @@ const Footer = () => {
               </h3>
             </motion.div>
             <p className="text-gray-300 leading-relaxed text-lg font-medium">
-              Backend Developer & Web Developer. Crafting digital experiences with passion, precision, and purpose.
+              Backend Developer & Web Developer. Crafting digital experiences
+              with passion, precision, and purpose.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((social, index) => {
@@ -101,9 +106,9 @@ const Footer = () => {
                     whileTap={{ scale: 0.9 }}
                     className="w-12 h-12 bg-gradient-to-br from-primary-500/20 to-accent-500/15 hover:from-primary-500/30 hover:to-accent-500/25 rounded-xl flex items-center justify-center transition-all duration-300 group glow-effect border-2 border-transparent hover:border-primary-500/30"
                   >
-                    <Icon 
-                      className="text-primary-400 group-hover:text-primary-300" 
-                      size={20} 
+                    <Icon
+                      className="text-primary-400 group-hover:text-primary-300"
+                      size={20}
                     />
                   </motion.a>
                 );
@@ -238,7 +243,7 @@ const Footer = () => {
             transition={{
               duration: 3,
               repeat: Infinity,
-              ease: 'easeInOut',
+              ease: "easeInOut",
             }}
           />
         </motion.div>
@@ -263,7 +268,7 @@ const Footer = () => {
                 transition={{
                   duration: 1,
                   repeat: Infinity,
-                  ease: 'easeInOut',
+                  ease: "easeInOut",
                 }}
                 className="mx-1"
               >
@@ -272,7 +277,7 @@ const Footer = () => {
               <span>using React, Framer Motion & Tailwind CSS</span>
             </p>
           </motion.div>
-          
+
           <motion.button
             onClick={scrollToTop}
             whileHover={{ scale: 1.1, y: -3 }}
@@ -282,7 +287,7 @@ const Footer = () => {
             <span className="font-bold">Back to Top</span>
             <motion.div
               animate={{ y: [0, -4, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
               <ArrowUp size={18} className="group-hover:text-primary-300" />
             </motion.div>
