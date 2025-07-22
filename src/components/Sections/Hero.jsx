@@ -269,7 +269,7 @@ const Hero = () => {
 
               {/* CV Download Button */}
               <motion.a
-                href="/ATS-Friendly-CV-Ahmad Irfan Faiz.pdf"
+                href="/pdf/ATS-Friendly-CV-Ahmad Irfan Faiz.pdf"
                 download="Ahmad_Irfan_Faiz_CV.pdf"
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
