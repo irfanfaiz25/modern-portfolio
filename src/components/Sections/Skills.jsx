@@ -145,14 +145,6 @@ const Skills = () => {
       {/* Background halus */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-500/8 rounded-full blur-3xl"
-          style={{
-            left: mousePosition.x * 0.01 + "%",
-            top: mousePosition.y * 0.01 + "%",
-          }}
-          transition={{ type: "spring", stiffness: 30, damping: 20 }}
-        />
-        <motion.div
           className="absolute w-80 h-80 bg-gradient-to-br from-orange-500/8 to-red-500/6 rounded-full blur-3xl"
           style={{
             right: mousePosition.x * 0.008 + "%",
@@ -176,14 +168,14 @@ const Skills = () => {
             className="text-center z-20 relative px-4"
           >
             <motion.h2
-              className="text-3xl md:text-6xl lg:text-7xl font-black mb-2 md:mb-4"
+              className="text-xl md:text-4xl lg:text-6xl font-black mb-2 md:mb-4"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <span className="gradient-text text-glow">My Tech Stack</span>
             </motion.h2>
             <motion.h3
-              className="text-xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-6 text-white/90"
+              className="text-sm md:text-lg lg:text-3xl font-bold mb-3 md:mb-6 text-white/90"
               variants={titleVariants}
             >
               & Skills
