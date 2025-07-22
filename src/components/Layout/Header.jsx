@@ -157,7 +157,7 @@ const MobileMenuButton = ({ isMenuOpen, onClick }) => (
 
 const DesktopNavigation = ({ activeSection }) => (
   <motion.nav
-    className="hidden lg:flex fixed left-6 top-[13rem] transform -translate-y-[13rem] w-20 bg-black/30 backdrop-blur-xl border border-orange-500/20 rounded-2xl z-50 shadow-2xl shadow-black/20"
+    className="hidden lg:flex fixed left-6 top-[1.5rem] transform -translate-y-[13rem] w-20 bg-black/30 backdrop-blur-xl border border-orange-500/20 rounded-2xl z-50 shadow-2xl shadow-black/20"
     variants={navigationVariants}
     initial="hidden"
     animate="visible"
