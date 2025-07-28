@@ -1,3 +1,11 @@
+/* Replace Google Fonts import with optimized version */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap&subset=latin");
+
+/* Add font-display: swap for better performance */
+@font-face {
+  font-family: 'Poppins';
+  font-display: swap;
+}
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
 @tailwind base;
 @tailwind components;
