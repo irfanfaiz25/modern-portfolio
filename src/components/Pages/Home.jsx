@@ -9,7 +9,10 @@ import Projects from "../Sections/Projects";
 import Education from "../Sections/Education";
 import Contact from "../Sections/Contact";
 import Highlight from "../Sections/Highlight";
-import ChatBot from "../AI/ChatBot";
+import { lazy, Suspense } from "react";
+
+// Lazy load ChatBot
+const ChatBot = lazy(() => import("../AI/ChatBot"));
 
 const Home = () => {
   return (
@@ -48,7 +51,11 @@ const Home = () => {
 
         <Footer />
       </div>
-      <ChatBot />
+
+      {/* Lazy load ChatBot */}
+      <Suspense fallback={null}>
+        <ChatBot />
+      </Suspense>
     </div>
   );
 };
