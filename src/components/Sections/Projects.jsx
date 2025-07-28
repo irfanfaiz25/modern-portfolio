@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ExternalLink,
   Github,
@@ -14,6 +14,47 @@ import {
   Zap,
 } from "lucide-react";
 import { ProjectsData } from "../../assets/data/projects";
+
+// Tambahkan lazy loading untuk gambar
+const LazyImage = ({ src, alt, className }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={imgRef} className={className}>
+      {isInView && (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          onLoad={() => setIsLoaded(true)}
+          className={`transition-opacity duration-300 ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      )}
+    </div>
+  );
+};
 
 const Projects = () => {
   const ref = useRef(null);
@@ -199,7 +240,7 @@ const Projects = () => {
                       } bg-gradient-to-br from-primary-500/20 to-primary-600/20 flex items-center justify-center relative`}
                     >
                       {project.images && project.images.length > 0 ? (
-                        <img
+                        <LazyImage
                           src={project.images[0]}
                           alt={project.name}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -337,7 +378,7 @@ const Projects = () => {
                   <div className="relative">
                     {/* Main Image */}
                     <div className="aspect-video bg-gradient-to-br from-primary-500/10 to-primary-600/10 rounded-xl overflow-hidden">
-                      <img
+                      <LazyImage
                         src={selectedProject.images[currentImageIndex]}
                         alt={`${selectedProject.name} - Image ${
                           currentImageIndex + 1
@@ -387,7 +428,7 @@ const Projects = () => {
                               : "border-gray-600 hover:border-gray-400"
                           }`}
                         >
-                          <img
+                          <LazyImage
                             src={image}
                             alt={`Thumbnail ${index + 1}`}
                             className="w-full h-full object-cover"
