@@ -16,7 +16,7 @@ import {
 import { ProjectsData } from "../../assets/data/projects";
 
 // Tambahkan lazy loading untuk gambar
-const LazyImage = ({ src, alt, className }) => {
+const LazyImage = ({ src, alt, className, ...props }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const imgRef = useRef();
@@ -40,7 +40,7 @@ const LazyImage = ({ src, alt, className }) => {
   }, []);
 
   return (
-    <div ref={imgRef} className={className}>
+    <div ref={imgRef} className="w-full h-full relative overflow-hidden">
       {isInView && (
         <img
           src={src}
@@ -49,8 +49,12 @@ const LazyImage = ({ src, alt, className }) => {
           onLoad={() => setIsLoaded(true)}
           className={`transition-opacity duration-300 ${
             isLoaded ? "opacity-100" : "opacity-0"
-          }`}
+          } ${className}`}
+          {...props}
         />
+      )}
+      {!isInView && (
+        <div className="w-full h-full bg-gradient-to-br from-primary-500/10 to-primary-600/10 animate-pulse" />
       )}
     </div>
   );
