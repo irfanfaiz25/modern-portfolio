@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Heart, ArrowUp, Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
@@ -14,48 +14,43 @@ const Footer = () => {
     { icon: Mail, href: "mailto:ahmadirfanfaiz13@gmail.com", label: "Email" },
   ];
 
+  const shouldReduceMotion = useReducedMotion();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer className="relative bg-dark-900/95 border-t border-primary-500/20 overflow-hidden">
-      {/* Background Elements */}
+      {/* Background Elements - Simplified */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute w-96 h-96 bg-gradient-to-br from-primary-500/10 to-accent-500/5 rounded-full blur-3xl top-1/2 left-1/4"
-          animate={{
-            scale: [1, 1.4, 1],
-            opacity: [0.05, 0.15, 0.05],
-            rotate: [0, 180, 360],
+          className="absolute w-96 h-96 bg-gradient-to-br from-primary-500/10 to-accent-500/5 rounded-full blur-3xl top-1/2 left-1/4 will-animate-opacity"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  scale: [1, 1.2, 1],
+                  opacity: [0.05, 0.1, 0.05],
+                }
+          }
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}
+        />
+        <motion.div
+          className="absolute w-64 h-64 bg-accent-500/8 rounded-full blur-2xl bottom-1/3 right-1/3 will-animate-opacity"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  opacity: [0.03, 0.08, 0.03],
+                }
+          }
           transition={{
             duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute w-64 h-64 bg-accent-500/8 rounded-full blur-2xl bottom-1/3 right-1/3"
-          animate={{
-            scale: [1.3, 1, 1.3],
-            opacity: [0.03, 0.12, 0.03],
-            x: [0, -20, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute w-48 h-48 bg-primary-400/6 rounded-full blur-xl top-1/4 right-1/4"
-          animate={{
-            y: [0, 25, 0],
-            opacity: [0.05, 0.15, 0.05],
-          }}
-          transition={{
-            duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
           }}
