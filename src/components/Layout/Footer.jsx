@@ -203,7 +203,7 @@ const Footer = () => {
                 className="flex items-center space-x-4 text-gray-300 hover:text-primary-400 transition-all duration-300 p-3 rounded-xl hover:bg-primary-500/10 border-2 border-transparent hover:border-primary-500/30"
               >
                 <Mail size={18} className="text-primary-500" />
-                <span className="font-medium">irfanfaiz25@gmail.com</span>
+                <span className="font-medium">ahmadirfanfaiz13@gmail.com</span>
               </motion.div>
               <motion.div
                 whileHover={{ x: 8, scale: 1.02 }}
@@ -217,7 +217,9 @@ const Footer = () => {
                 className="flex items-center space-x-4 text-gray-300 hover:text-primary-400 transition-all duration-300 p-3 rounded-xl hover:bg-primary-500/10 border-2 border-transparent hover:border-primary-500/30"
               >
                 <Linkedin size={18} className="text-primary-500" />
-                <span className="font-medium">linkedin.com/in/irfanfaiz25</span>
+                <span className="font-medium">
+                  linkedin.com/in/ahmad-irfan-faiz
+                </span>
               </motion.div>
             </div>
           </motion.div>
