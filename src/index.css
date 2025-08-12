@@ -10,26 +10,39 @@
 
   html {
     scroll-behavior: smooth;
-    /* Mencegah zoom otomatis */
+    /* Optimasi untuk animasi */
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    /* Mengatur ukuran font dasar yang konsisten */
     font-size: 16px;
   }
 
   body {
     @apply bg-dark-900 text-white font-body;
     font-feature-settings: "rlig" 1, "calt" 1;
-    /* Mencegah overflow horizontal */
     overflow-x: hidden;
-    /* Mengatur line-height yang konsisten */
     line-height: 1.6;
+    /* Optimasi rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  body {
-    @apply bg-dark-900 text-white font-body;
-    font-feature-settings: "rlig" 1, "calt" 1;
+  /* Optimasi untuk elemen yang akan dianimasi */
+  .will-animate {
+    will-change: transform, opacity;
+  }
+
+  .will-animate-transform {
+    will-change: transform;
+  }
+
+  .will-animate-opacity {
+    will-change: opacity;
+  }
+
+  /* Reset will-change setelah animasi selesai */
+  .animation-complete {
+    will-change: auto;
   }
 
   h1,
@@ -141,5 +154,55 @@
   html {
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
+  }
+}
+
+/* Animasi yang dioptimalkan */
+.fade-in-optimized {
+  animation: fadeInOptimized 0.6s ease-out forwards;
+}
+
+.slide-up-optimized {
+  animation: slideUpOptimized 0.5s ease-out forwards;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .will-animate,
+  .will-animate-transform,
+  .will-animate-opacity {
+    will-change: auto;
+  }
+}
+
+/* Keyframes yang dioptimalkan */
+@keyframes fadeInOptimized {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpOptimized {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
