@@ -8,13 +8,28 @@
     /* @apply border; */
   }
 
+  html {
+    scroll-behavior: smooth;
+    /* Mencegah zoom otomatis */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Mengatur ukuran font dasar yang konsisten */
+    font-size: 16px;
+  }
+
   body {
     @apply bg-dark-900 text-white font-body;
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* Mencegah overflow horizontal */
+    overflow-x: hidden;
+    /* Mengatur line-height yang konsisten */
+    line-height: 1.6;
   }
 
-  html {
-    scroll-behavior: smooth;
+  body {
+    @apply bg-dark-900 text-white font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   h1,
@@ -62,6 +77,16 @@
 
   .container-custom {
     @apply max-w-7xl mx-auto section-padding;
+    /* Mengatur lebar maksimum yang lebih fleksibel */
+    width: 100%;
+    max-width: min(90vw, 1400px);
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+    /* Padding yang lebih responsif */
+    padding-left: clamp(1rem, 4vw, 2rem);
+    padding-right: clamp(1rem, 4vw, 2rem);
   }
 }
 
@@ -87,4 +112,34 @@
 /* Selection */
 ::selection {
   @apply bg-primary-500/30;
+}
+
+/* Media queries untuk resolusi laptop yang bermasalah */
+@media screen and (min-width: 1366px) and (max-width: 1440px) {
+  html {
+    font-size: 15px; /* Sedikit lebih kecil untuk laptop 1366px */
+  }
+
+  .container-custom {
+    max-width: 85vw;
+  }
+}
+
+@media screen and (min-width: 1441px) and (max-width: 1600px) {
+  html {
+    font-size: 16px;
+  }
+
+  .container-custom {
+    max-width: 80vw;
+  }
+}
+
+/* Untuk layar dengan DPI tinggi */
+@media screen and (-webkit-min-device-pixel-ratio: 1.5),
+  screen and (min-resolution: 144dpi) {
+  html {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
 }

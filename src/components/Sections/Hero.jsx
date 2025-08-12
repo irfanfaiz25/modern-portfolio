@@ -201,27 +201,38 @@ const Hero = () => {
               </span>
             </motion.div>
 
-            {/* Large Typography - Responsive */}
+            {/* Large Typography - Responsive dengan clamp */}
             <div className="space-y-3 md:space-y-4 text-center lg:text-left">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none"
+                className="font-black leading-none"
+                style={{
+                  fontSize: "clamp(2rem, 8vw, 6rem)",
+                }}
               >
                 <div className="text-white/90">AHMAD IRFAN</div>
                 <div className="gradient-text text-glow">FAIZ</div>
               </motion.div>
 
-              {/* Dynamic Role with Typewriter Effect - Responsive */}
+              {/* Dynamic Role dengan ukuran yang lebih responsif */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative h-12 md:h-16 lg:h-20 overflow-hidden"
+                className="relative overflow-hidden"
+                style={{
+                  height: "clamp(3rem, 6vw, 5rem)",
+                }}
               >
                 <div className="absolute inset-0 flex items-center justify-center lg:justify-start">
-                  <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold gradient-text-alt">
+                  <span
+                    className="font-bold gradient-text-alt"
+                    style={{
+                      fontSize: "clamp(1.125rem, 4vw, 2.5rem)",
+                    }}
+                  >
                     {displayedText}
                     <motion.span
                       animate={{ opacity: [1, 0] }}
