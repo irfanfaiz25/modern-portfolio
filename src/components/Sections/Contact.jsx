@@ -131,15 +131,15 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "irfanfaiz25@gmail.com",
-      href: "mailto:irfanfaiz25@gmail.com",
+      value: "ahmadirfanfaiz13@gmail.com",
+      href: "mailto:ahmadirfanfaiz13@gmail.com",
       color: "from-blue-500 to-blue-600",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+62 812-3456-7890",
-      href: "tel:+6281234567890",
+      value: "+62 855-2638-8358",
+      href: "tel:+6285526388358",
       color: "from-green-500 to-green-600",
     },
     {
