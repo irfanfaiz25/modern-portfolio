@@ -1,28 +1,30 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Target, Lightbulb } from "lucide-react";
 import { useRef } from "react";
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const shouldReduceMotion = useReducedMotion();
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: shouldReduceMotion ? 0 : 0.1,
+        duration: shouldReduceMotion ? 0.1 : 0.6,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: shouldReduceMotion ? 0.1 : 0.5,
         ease: "easeOut",
       },
     },
@@ -30,29 +32,36 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 relative overflow-hidden">
-      {/* Background Elements */}
+      {/* Background Elements - Simplified */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute w-96 h-96 bg-gradient-to-br from-primary-500/10 to-accent-500/5 rounded-full blur-3xl top-1/4 right-1/4"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.1, 0.2, 0.1],
-            rotate: [0, 180, 360],
-          }}
+          className="absolute w-96 h-96 bg-gradient-to-br from-primary-500/10 to-accent-500/5 rounded-full blur-3xl top-1/4 right-1/4 will-animate-opacity"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  scale: [1, 1.1, 1],
+                  opacity: [0.1, 0.15, 0.1],
+                }
+          }
           transition={{
-            duration: 12,
+            duration: 20,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute w-64 h-64 bg-accent-500/10 rounded-full blur-2xl bottom-1/4 left-1/4"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.05, 0.15, 0.05],
-          }}
+          className="absolute w-64 h-64 bg-accent-500/10 rounded-full blur-2xl bottom-1/4 left-1/4 will-animate-opacity"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  scale: [1.1, 1, 1.1],
+                  opacity: [0.05, 0.12, 0.05],
+                }
+          }
           transition={{
-            duration: 8,
+            duration: 15,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -93,9 +102,15 @@ const About = () => {
               <div className="glass-effect-alt p-8 rounded-2xl">
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                    <motion.div
+                      className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center will-animate-transform"
+                      whileHover={
+                        shouldReduceMotion ? {} : { rotate: 15, scale: 1.05 }
+                      }
+                      transition={{ duration: 0.3 }}
+                    >
                       <Lightbulb className="text-white" size={32} />
-                    </div>
+                    </motion.div>
                     <div>
                       <h3 className="text-xl font-bold text-white">
                         My Philosophy
