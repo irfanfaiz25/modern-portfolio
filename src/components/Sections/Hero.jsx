@@ -320,8 +320,8 @@ const Hero = () => {
               </motion.a>
 
               <motion.a
-                href="/pdf/ATS-Friendly-CV-Ahmad Irfan Faiz.pdf"
-                download="Ahmad_Irfan_Faiz_CV.pdf"
+                href="/pdf/CV-AHMAD IRFAN FAIZ.pdf"
+                download="CV-AHMAD IRFAN FAIZ.pdf"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center justify-center space-x-3 glass-effect-alt hover:bg-green-500/20 px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-white transition-all duration-300 border-2 border-green-500/50 hover:border-green-400 text-sm md:text-base"

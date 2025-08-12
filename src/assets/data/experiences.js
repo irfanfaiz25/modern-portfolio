@@ -9,9 +9,8 @@ export const ExperienceData = [
       "Occasionally worked on smaller projects with React.js to enhance my skills and gain hands-on experience while learning the framework.",
     ],
     key_achievements: [
-      "Successfully delivered multiple websites for clients, helping them manage data and streamline their processes.",
-      "Built interactive and responsive web applications, improving user experience and functionality.",
-      "Continually expanding knowledge of React.js through practical, real-world projects.",
+      "Designed questionnaire and data entry platforms for SMEs and institutions, attracting 100+ active users.",
+      "Improved UI/UX with React, Laravel and TailwindCSS, achieving a 4.8/5 user satisfaction rating.",
     ],
   },
   {
@@ -26,10 +25,8 @@ export const ExperienceData = [
       "Gained hands-on experience in bridging backend and frontend development, ensuring seamless integration between the two.",
     ],
     key_achievements: [
-      "Successfully delivered a functional and scalable REST API, contributing to the LPPM Web Information System.",
-      "Demonstrated leadership capabilities as a project leader, effectively managing and supporting the team.",
-      "Enhanced collaboration between backend and frontend development by providing timely support and clear API documentation.",
-      "Strengthened skills in full-stack development by contributing to both backend and frontend tasks.",
+      "Developed REST API for LPPM Information System using Laravel 11 and MySQL, handling 100+ research data entries monthly.",
+      "Led a 3-member team and delivered the backend project 2 weeks ahead of schedule.",
     ],
   },
   {
@@ -45,16 +42,13 @@ export const ExperienceData = [
       "Gained experience in using Git for version control and adopted conventional commit practices for clean, consistent code management.",
     ],
     key_achievements: [
-      "Successfully contributed to building a web-based academic information system using Golang and PostgreSQL.",
-      "Developed core backend functionalities and learned best practices in backend development.",
-      "Acquired project leadership skills and learned how to structure and manage codebases effectively.",
-      "First experience with Git conventional commits, which helped streamline team collaboration and version control.",
+      "Built backend services using Golang and PostgreSQL for an Academic Information System, reducing manual workload by 30%.",
     ],
   },
   {
     companyName:
       "PT. Astra Otoparts, Tbk - Divisi Engineering Development Center",
-    as: "Fullstack Web Developer Intern",
+    as: "IT Support Intern",
     position: "Internship",
     timeSpan: "July, 2023 - November, 2023",
     description: [
@@ -64,8 +58,8 @@ export const ExperienceData = [
       "EDC Assets Management System: Created using PHP, MySQL, and Bootstrap to centralize asset management, earning a special company reward for exceptional performance.",
     ],
     key_achievements: [
-      "Solely responsible for the entire development lifecycle of these projects, from requirements gathering to deployment.",
-      "Delivered robust and user-friendly systems, contributing significantly to the company's digitalization efforts.",
+      "Developed 3 internal web-based systems automating 70% of manual processes.",
+      "Integrated a barcode system for asset tracking, reducing audit time from 2 days to 4 hours.",
     ],
   },
   {
@@ -80,9 +74,8 @@ export const ExperienceData = [
       "Designed the school's new logo, which is still in use today, helping improve the school's visual identity.",
     ],
     key_achievements: [
-      "Played a key role in the school's digital transformation through the development of a library management system and social media presence.",
-      "Created a new logo that is still being used by the school today.",
-      "Supported teachers and students with digital tools that enhanced the learning and administrative processes.",
+      "Created PHP-MySQL based library management system, streamlining book tracking for teachers.",
+      "Redesigned school logo and managed YouTube & Instagram channels, boosting engagement by 100%.",
     ],
     note: "(Kampus Merdeka)",
   },
